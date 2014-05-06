@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<documents>
+	<!-- configure data sources here -->
+	<datasources>
+		<source id="ds1" type="SQLDataSource">
+			<host>jdbc:mysql://localhost:3306/subsolr</host>
+			<userid>root</userid>
+			<password>admin</password>
+			<driver>com.mysql.jdbc.Driver</driver>
+		</source>
+		<source id="ds2" type="FTPDataSource">
+			<host>xxxx</host>
+			<userid> xxxx</userid>
+			<password>yyyy</password>
+		</source>
+		<source id="ds3" type="FileDataSource">
+			<path>empl.csv</path>
+		</source>
+	</datasources>
+
+	<!-- configure documents here -->
+	<document name="ProcedureDocument">
+
+		 <fieldset name="procedure01" sourceId="ds1"
+			EntityProcessor="com.subsolr.entityprocessors.SQLEntityProcessor">
+			<field column_name="EMP_ID" field_map_name="EMP_ID" />
+			<field column_name="EMP_NAME" field_map_name="EMP_NAME" />
+			<field column_name="EMP_GENDER" field_map_name="EMP_GENDER" />
+			<field column_name="EMP_HIRE_DATE" field_map_name="EMP_HIRE_DATE" />
+			<query>
+				<statement>
+					SELECT
+					emp_no as EMP_ID,
+					first_name as EMP_NAME,
+					gender as
+					EMP_GENDER,
+					hire_date as EMP_HIRE_DATE
+					FROM
+					employees
+				</statement>
+				<max_cached_results> 10000 </max_cached_results>
+			</query>
+		</fieldset> 
+		<fieldset name="key_word01" sourceId="ds3"
+			EntityProcessor="com.subsolr.entityprocessors.CSVEntityProcessor">
+
+			<field column_name="EMP_ID" field_map_name="1" />
+			<field column_name="EMP_NAME" field_map_name="2" />
+			<field column_name="EMP_GENDER" field_map_name="3" />
+			<field column_name="EMP_HIRE_DATE" field_map_name="4" />
+
+		</fieldset>
+		<!-- <fieldset name="procedure_family">
+			 for procedure family info
+		</fieldset> -->
+	</document>
+	<document name="Document2">
+
+		 <fieldset name="procedure02" sourceId="ds1"
+			EntityProcessor="com.subsolr.entityprocessors.SQLEntityProcessor">
+			<field column_name="EMP_ID" field_map_name="EMP_ID" />
+			<field column_name="EMP_NAME" field_map_name="EMP_NAME" />
+			<field column_name="EMP_GENDER" field_map_name="EMP_GENDER" />
+			<field column_name="EMP_HIRE_DATE" field_map_name="EMP_HIRE_DATE" />
+			<query>
+				<statement>
+					SELECT
+					emp_no as EMP_ID,
+					first_name as EMP_NAME,
+					gender as
+					EMP_GENDER,
+					hire_date as EMP_HIRE_DATE
+					FROM
+					employees
+				</statement>
+				<max_cached_results> 10000 </max_cached_results>
+			</query>
+		</fieldset> 
+		<fieldset name="key_word02" sourceId="ds3"
+			EntityProcessor="com.subsolr.entityprocessors.CSVEntityProcessor">
+
+			<field column_name="EMP_ID" field_map_name="1" />
+			<field column_name="EMP_NAME" field_map_name="2" />
+			<field column_name="EMP_GENDER" field_map_name="3" />
+			<field column_name="EMP_HIRE_DATE" field_map_name="4" />
+
+		</fieldset>
+		<!-- <fieldset name="procedure_family">
+			 for procedure family info
+		</fieldset> -->
+	</document>
+</documents>

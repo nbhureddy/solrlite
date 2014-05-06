@@ -1,0 +1,54 @@
+<schema>
+	<field_type_defns_defns>
+		<!-- type for english text -->
+		<field_type name="text_en" class="solr.TextField"
+			positionIncrementGap="100">
+			<similarity class="org.apache.lucene.search.similarities.DefaultSimilarity"/>
+				<analyzer>
+					<tokenizer class="solr.StandardTokenizerFactory" />
+					<filter class="solr.LowerCaseFilterFactory" />
+					<filter class="solr.StopFilterFactory" ignoreCase="true"
+						words="lang/stopwords_es.txt" format="snowball" />
+					<filter class="solr.SpanishLightStemFilterFactory" />
+					<!-- more aggressive: <filter class="solr.SnowballPorterFilterFactory" 
+						language="Spanish"/> -->
+				</analyzer>
+		</field_type>
+
+		<!-- type for spanish text -->
+		<field_type name="text_esp" class="solr.TextField"
+			positionIncrementGap="100">
+			<analyzer>
+				<tokenizer class="solr.StandardTokenizerFactory" />
+				<filter class="solr.LowerCaseFilterFactory" />
+				<filter class="solr.StopFilterFactory" ignoreCase="true"
+					words="lang/stopwords_es.txt" format="snowball" />
+				<filter class="solr.PorterStemFilterFactory" />
+			</analyzer>
+		</field_type>
+
+		<field_type name="txt_esp_default" class="solr.TextField">
+			<analyzer class="org.apache.lucene.analysis.el.SpanishAnalyzer" />
+		</field_type>
+	</field_type_defns_defns>
+
+
+	<!-- field definitions here -->
+	<biz_field_defintion>
+		<field name="PMN" type="text_en" indexed="true" stored="true"
+			required="true" multiValued="false" />
+		<field name="PMN_s" type="text_esp" indexed="true" stored="true"
+			required="true" multiValued="false" />
+		<field name="PMI " type="numeric" indexed="true" stored="true"
+			required="true" multiValued="false" />
+		<field name="DPMI" type="numeric" indexed="true" stored="true"
+			required="true" multiValued="false" />
+		<field name="AR" type="numeric" indexed="true" stored="true"
+			required="true" multiValued="false" />
+		<field name="PFN" type="text_en" indexed="true" stored="true"
+			required="true" multiValued="false" />
+		<field name="PFN_s" type="text_esp" indexed="true" stored="true"
+			required="true" multiValued="false" />
+	</biz_field_defintion>
+
+</schema>
