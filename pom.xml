@@ -6,7 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
-		<org.apache.solr-version>4.6.0</org.apache.solr-version>
+		<org.apache.solr-version>8.2.0</org.apache.solr-version>
 	</properties>
 	<dependencies>
 
